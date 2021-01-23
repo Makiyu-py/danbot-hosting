@@ -57,7 +57,7 @@ class DanBotClient:
 
     async def _autopost(self):
 
-        print("DanBotHosting - Auto Post Started")
+        print("DanBotHosting - Auto Post Started")  # how do u do logging??
         await self.post(len(self.bot.guilds),
                         len(set(self.bot.get_all_members())))  # Creates first post
 
