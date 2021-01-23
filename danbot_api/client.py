@@ -18,18 +18,22 @@ async def check_resp_status(resp: rq.Response):  # for the requests stuff
 
 
 class DanBotClient:
+    """
+    The main client class
+
+    :param bot: your discord.py client
+    :type bot: discord.Client
+    :param key: the DanBot Hosting API key
+    :type key: str
+    :param autopost: If you want to have autopost turned on/off Default `False`.
+    :type autopost: bool
+    """
 
     def __init__(self, bot: discord.Client, key: str, autopost: bool = False):
-        """
-
-        :param bot: your discord.py client
-        :param key: the DanBot Hosting API key
-        :param autopost: If you want to have autopost turned on/off (bool)
-        """
 
         self.bot = bot
 
-        if key.startswith('danbot_api-'):
+        if key.startswith('danbot-'):
             self.key = key
         else:
             raise NotAllowed("\"key\" is not prefixed with \"danbot_api-\". Please follow the key format")
@@ -40,6 +44,13 @@ class DanBotClient:
             self.autopost_task = bot.loop.create_task(self._autopost())
 
     async def post(self, server_count: int, user_count: int):
+        """main post method
+
+        :param server_count: The server count you're posting to the API
+        :type server_count: int
+        :param user_count: The user count you're posting to the API
+        :type user_count: int
+        """
 
         with rq.post(url=self.baseurl + f"/bot/{self.bot.user.id}/stats",
                      data={
@@ -79,6 +90,10 @@ class DanBotClient:
                               )
 
     async def get_bot_info(self, bot_id: int = None):
+        """ a coroutine that gets bots' infos in the API
+
+        :param bot_id: The id of the bot you're searching for. Defaults to the own bot's id
+        """
 
         if bot_id is None:
             bot_id = self.bot.user.id
