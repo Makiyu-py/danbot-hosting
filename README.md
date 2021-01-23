@@ -3,7 +3,7 @@ A Python API Wrapper for the DanBot Hosting API
 
 ### **Still under development!!**
 
-#Links
+# Links
 * [DanBot Hosting Discord Server](https://discord.gg/dbh)
 * [DanBot Hosting Website](https://danbot.host)
 * [Original Wrapper (for discord.js)](https://github.com/danbot-devs/danbot-hosting)
