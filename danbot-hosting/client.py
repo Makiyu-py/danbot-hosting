@@ -6,7 +6,7 @@ import json
 from .errors import *
 
 
-async def check_resp_status(resp: rq.Response):
+async def check_resp_status(resp: rq.Response):  # for the requests stuff
     resp_code = resp.status_code
 
     if resp_code == 200:
