@@ -36,7 +36,7 @@ class DanBotClient:
         if key.startswith('danbot-'):
             self.key = key
         else:
-            raise NotAllowed("\"key\" is not prefixed with \"danbot_api-\". Please follow the key format")
+            raise NotAllowed("\"key\" is not prefixed with \"danbot-\". Please follow the key format")
 
         self.baseurl = 'https://danbot.host/api'
 
