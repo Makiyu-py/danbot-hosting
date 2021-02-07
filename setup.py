@@ -19,4 +19,5 @@ setuptools.setup(
             "Development Status :: 4 - Beta",
             "Intended Audience :: Developers",
         ],
+    keywords="DanBotHosting discord dbh"
 )
