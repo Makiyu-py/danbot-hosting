@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="UTF-8") as f:
 
 setuptools.setup(
     name='danbot-hosting-py',
-    version='0.1a',
+    version='0.1',
     description='A Python Wrapper for the DanBotHosting API',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -15,4 +15,8 @@ setuptools.setup(
     author='Makiyu',
     author_email='dankerdanker11@gmail.com',
     python_requires='>=3.6',
+    classifiers=[
+            "Development Status :: 4 - Beta",
+            "Intended Audience :: Developers",
+        ],
 )

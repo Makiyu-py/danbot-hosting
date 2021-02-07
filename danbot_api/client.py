@@ -98,7 +98,7 @@ class DanBotClient:
         if bot_id is None:
             bot_id = self.bot.user.id
 
-        with rq.get(self.baseurl + f"/bot/{bot_id}/stats") as data:
+        with rq.get(self.baseurl + f"/bot/{bot_id}/info") as data:
             if await check_resp_status(data):
                 js_data = data.json()
             else:
