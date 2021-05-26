@@ -12,7 +12,7 @@ github_url = 'https://github.com/Makiyu-py/danbot-hosting'
 
 setup(
     name='danbot-hosting-py',
-    version='0.1',
+    version='0.2',
     description='A Python Wrapper for the DanBotHosting API',
     long_description=long_description,
     long_description_content_type="text/markdown",
