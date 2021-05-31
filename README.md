@@ -1,14 +1,6 @@
-# DanBotHosting API Python Wrapper
+# danbot-hosting-py
 
 A Python API Wrapper for the DanBot Hosting API
-
-### **Still under development!!**
-
-# Links
-
-- [DanBot Hosting Discord Server](https://discord.gg/dbh)
-- [DanBot Hosting Website](https://danbot.host)
-- [Original Wrapper (for discord.js)](https://github.com/danbot-devs/danbot-hosting)
 
 # Installation
 
@@ -20,9 +12,7 @@ A Python API Wrapper for the DanBot Hosting API
 
 `pip3 install danbot-hosting-py`
 
-# Examples
-
-## Auto-posting
+# Quick Example
 
 ```python
 from discord.ext import commands
@@ -58,3 +48,10 @@ bot.run("your bot's token here")
 > I'm having trouble with the module
 
 #### You may post at the [issues section in Github](https://github.com/Makiyu-py/danbot-hosting/issues) or message me on Discord! (Makiyu^#4707)
+
+# Links
+
+- [DanBot Hosting Discord Server](https://discord.gg/dbh)
+- [DanBot Hosting Website](https://danbot.host)
+- [Original Wrapper (for discord.js)](https://github.com/danbot-devs/danbot-hosting)
+- [Changelog](https://github.com/Makiyu-py/danbot-hosting/blob/main/CHANGELOG.md)
