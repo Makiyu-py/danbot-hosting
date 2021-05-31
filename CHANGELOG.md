@@ -1,6 +1,6 @@
 # danbot_api Changelog
 
-## Unreleased
+## 1.0 - 2021-05-31
 
 ### Added
 
