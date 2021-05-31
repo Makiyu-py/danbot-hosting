@@ -1,5 +1,5 @@
+from discord.ext import tasks
 import aiohttp
-import asyncio
 import discord
 import logging
 import json
@@ -45,7 +45,8 @@ class DanBotClient:
         self.baseurl = 'https://danbot.host/api'
 
         if autopost:
-            self.autopost_task = bot.loop.create_task(self._autopost())
+            self._autopost.loop = bot.loop
+            self._autopost.start()
 
     async def post(self, server_count: int, user_count: int):
         """main post method
@@ -72,17 +73,21 @@ class DanBotClient:
 
         return _data
 
+    @tasks.loop(seconds=60000)
     async def _autopost(self):
 
-        self.logger.info("Auto Post Started")
+        data = await self.post(len(self.bot.guilds),
+                               len(set(self.bot.get_all_members())))
+        self.bot.dispatch('dbh_post',  # basically triggers a on_dbh_post dpy event on every new post
+                          data  # and may also return the dict that is used to post the bot info
+                          )
 
-        while not self.bot.is_closed():
-            data = await self.post(len(self.bot.guilds),
-                                   len(set(self.bot.get_all_members())))
-            self.bot.dispatch('dbh_post',  # basically triggers a on_dbh_post dpy event on every new post
-                              data  # and may also return the dict that is used to post the bot info
-                              )
-            await asyncio.sleep(60000)
+    @_autopost.before_loop
+    async def _ready_autopost(self):
+
+        await self.bot.wait_until_ready()
+
+        self.logger.info("Auto Post Started")
 
     async def get_bot_info(self, bot_id: int = None):
         """a coroutine that gets bots' infos from the API
@@ -100,12 +105,12 @@ class DanBotClient:
         """ closes all of the connections.
         """
 
+        self.logger.debug("Closing Connections...")
+        
         if self._is_closed:
             return
 
         await self.http.close()
-
-        if hasattr(self, "autopost_task"):
-            self.autopost_task.cancel()
+        self._autopost.cancel()
 
         self._is_closed = True

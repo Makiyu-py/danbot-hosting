@@ -5,12 +5,10 @@ import asyncio
 
 class HTTPClient:
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, session, **kwargs) -> None:
         self.base_url = "https://danbot.host/api"
         self.loop = kwargs.get("loop", asyncio.get_event_loop())
-        self.session = kwargs.get(
-            "session", aiohttp.ClientSession(
-                loop=self.loop))
+        self.session = session or aiohttp.ClientSession(loop=self.loop)
 
     async def send_request(self, **kwargs):
         req_types = {
