@@ -10,17 +10,18 @@ from .errors import *
 
 
 class DanBotClient:
-    """
-    Represents a client connection that connects to the DanBotHosting API.
+    """Represents a client connection that connects to the DanBotHosting API.
 
-    :param bot: your discord.py client connection.
-    :type bot: Union[discord.Client, discord.ext.commands.Bot]
-    :param key: the DanBot Hosting API key.
-    :type key: str
-    :param autopost: If you want to have autopost turned on/off Default `False`.
-    :type autopost: bool
-    :param session: If you want to have a custom aiohttp.ClientSession instance for sending requests.
-    :type session: aiohttp.ClientSession
+    Parameters
+    -----------
+    bot : Union[discord.Client, discord.ext.commands.Bot])
+        your discord.py client connection.
+    key : str
+        the DanBot Hosting API key.
+    autopost : bool, default: False
+        If you want to have autopost turned on/off.
+    session : aiohttp.ClientSession, optional
+        If you want to have a custom aiohttp.ClientSession instance for sending requests.
     """
 
     def __init__(
@@ -49,12 +50,19 @@ class DanBotClient:
             self._autopost.start()
 
     async def post(self, server_count: int, user_count: int):
-        """main post method
+        """Main post method
 
-        :param server_count: The server count you're posting to the API
-        :type server_count: int
-        :param user_count: The user count you're posting to the API
-        :type user_count: int
+        Parameters
+        -----------
+        server_count : int
+            The server count you're posting to the API
+        user_count : int
+            The user count you're posting to the API
+
+        Returns
+        -------
+        Optinal[dict]
+            The data posted to the API
         """
 
         bot_inf = self.bot.user
@@ -92,8 +100,15 @@ class DanBotClient:
     async def get_bot_info(self, bot_id: int = None):
         """a coroutine that gets bots' infos from the API
 
-        :param bot_id: The id of the bot you're searching for. Defaults to the own bot's id
-        :type bot_id: int
+        Paremeters
+        ----------
+        bot_id: int, optional
+            The id of the bot you're searching for. Defaults to the own bot's
+
+        Returns
+        -------
+        Optional[dict]
+            Data of the bot asked for, gotten from the API
         """
 
         if bot_id is None:
