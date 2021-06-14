@@ -20,8 +20,8 @@ class DanBotClient:
         the DanBot Hosting API key.
     autopost : bool, default: False
         If you want to have autopost turned on/off.
-    session : aiohttp.ClientSession, optional
-        If you want to have a custom aiohttp.ClientSession instance for sending requests.
+    session : Optional[aiohttp.ClientSession]
+        If you want to have a custom ClientSession instance for sending requests.
     """
 
     def __init__(
@@ -51,6 +51,9 @@ class DanBotClient:
 
     async def post(self, server_count: int, user_count: int):
         """Main post method
+
+        You don't need to use this method if you have the autopost
+        paremeter in the class set to True.
 
         Parameters
         -----------
@@ -100,9 +103,9 @@ class DanBotClient:
     async def get_bot_info(self, bot_id: int = None):
         """a coroutine that gets bots' infos from the API
 
-        Paremeters
-        ----------
-        bot_id: int, optional
+        Parameters
+        -----------
+        bot_id: Optional[int]
             The id of the bot you're searching for. Defaults to the own bot's
 
         Returns
@@ -117,7 +120,7 @@ class DanBotClient:
         return await self.http.get_bot_info(route="/bot/{bot_id}/info")
 
     async def close(self):
-        """ closes all of the connections.
+        """Closes all of the connections.
         """
 
         self.logger.debug("Closing Connections...")
